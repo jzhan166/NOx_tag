@@ -34,7 +34,7 @@
       <valid_values/>
       <desc>The machine wallclock setting.  Default determined in config_machines.xml can be overwritten by testing</desc>
     </entry>
-    <entry id="JOB_QUEUE" value="regular">
+    <entry id="JOB_QUEUE" value="premium">
       <type>char</type>
       <valid_values/>
       <desc>The machine queue in which to submit the job.  Default determined in config_machines.xml can be overwritten by testing</desc>
