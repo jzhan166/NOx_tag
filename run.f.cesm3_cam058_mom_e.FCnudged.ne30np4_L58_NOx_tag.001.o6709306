@@ -1,0 +1,46 @@
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+Generating namelists for /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001
+  2022-10-03 13:39:14 atm 
+Create namelist for component cam
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cam//cime_config/buildnml
+CAM namelist copy: file1 /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/atm_in file2 /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/atm_in 
+  2022-10-03 13:39:15 lnd 
+Create namelist for component clm
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/clm//cime_config/buildnml
+  2022-10-03 13:39:16 ice 
+Create namelist for component cice
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cice//cime_config/buildnml
+RUN: /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cice/bld/generate_cice_decomp.pl -ccsmroot /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/.. -res ne30np4 -nx 48602 -ny 1 -nproc 3600 -thrds 1 -output all 
+FROM: /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001
+  output: 48602 1 2 1 7 roundrobin square-ice
+
+  2022-10-03 13:39:16 ocn 
+Create namelist for component docn
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cdeps/docn/cime_config/buildnml
+docn_mode is prescribed
+  2022-10-03 13:39:16 rof 
+Create namelist for component mosart
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/mosart//cime_config/buildnml
+  2022-10-03 13:39:16 glc 
+Create namelist for component sglc
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/CIME/non_py/src/components/stub_comps_nuopc/sglc/cime_config/buildnml
+  2022-10-03 13:39:16 wav 
+Create namelist for component swav
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/CIME/non_py/src/components/stub_comps_nuopc/swav/cime_config/buildnml
+  2022-10-03 13:39:16 esp 
+Create namelist for component sesp
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/CIME/non_py/src/components/stub_comps_nuopc/sesp/cime_config/buildnml
+  2022-10-03 13:39:16 cpl 
+Create namelist for component drv
+   Calling /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cmeps/cime_config/buildnml
+Writing nuopc_runconfig for components ['CPL', 'ATM', 'LND', 'ICE', 'OCN', 'ROF']
+-------------------------------------------------------------------------
+ - Prestage required restarts into /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run
+ - Case input data directory (DIN_LOC_ROOT) is /glade/p/cesmdata/cseg/inputdata 
+ - Checking for required input datasets in DIN_LOC_ROOT
+-------------------------------------------------------------------------
+run command is mpiexec_mpt -p "%g:"  -np 3600  omplace -tm open64 -vv /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/bld/cesm.exe   >> cesm.log.$LID 2>&1  
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+ERROR: RUN FAIL: Command 'mpiexec_mpt -p "%g:"  -np 3600  omplace -tm open64 -vv /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/bld/cesm.exe   >> cesm.log.$LID 2>&1 ' failed
+See log file for details: /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/cesm.log.6709306.chadmin1.ib0.cheyenne.ucar.edu.221003-133913

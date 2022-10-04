@@ -1,0 +1,73 @@
+3d2
+<   ! 30 Jun 2022: time averaging bug fix in subroutine accumulRest
+80a80
+>      logical            :: scale_by_thickness  ! true/false flag to scale vertically interpolated variable by soil thickness or not
+133c133,134
+<        accum_type, accum_period, numlev, subgrid_type, init_value, type2d)
+---
+>        accum_type, accum_period, numlev, subgrid_type, init_value, type2d, &
+>        scale_by_thickness)
+152,154c153,155
+<     use shr_const_mod, only: SHR_CONST_CDAY
+<     use clm_time_manager, only : get_step_size
+<     use decompMod, only : get_proc_bounds
+---
+>     use shr_const_mod    , only: SHR_CONST_CDAY
+>     use clm_time_manager , only : get_step_size
+>     use decompMod        , only : get_proc_bounds, bounds_type
+166a168
+>     logical         , intent(in), optional :: scale_by_thickness  ! true/false flag to scale vertically interpolated variable by soil thickness; required if numlev > 1
+175a178,179
+>     type(bounds_type) :: bounds
+>     character(len=*), parameter :: subname = 'init_accum_field'
+177a182,189
+>     if (numlev > 1) then
+>        if (.not. present(scale_by_thickness) .or. &
+>            .not. present(type2d)) then
+>           write(iulog,*) 'ERROR: field ', trim(name),' in subroutine ', subname
+>           call endrun('2d accumulation fields require scale_by_thickness AND type2d passed to this subroutine as arguments')
+>        end if
+>     end if
+> 
+180,181c192,197
+<     call get_proc_bounds(begg, endg, begl, endl, begc, endc, begp, endp, &
+<          begCohort, endCohort )
+---
+>     call get_proc_bounds(bounds)
+>     begg = bounds%begg; endg = bounds%endg
+>     begl = bounds%begl; endl = bounds%endl
+>     begc = bounds%begc; endc = bounds%endc
+>     begp = bounds%begp; endp = bounds%endp
+>     begCohort = bounds%begCoHort; endCohort = bounds%endCoHort
+256c272,277
+<     
+---
+>     if (present(scale_by_thickness)) then
+>        accum(nf)%scale_by_thickness = scale_by_thickness
+>     else
+>        accum(nf)%scale_by_thickness = .false.
+>     end if
+> 
+703a725
+>                switchdim=.false., scale_by_thickness=accum(nf)%scale_by_thickness, &
+716a739,742
+>           ! Counterintuitive to scale NSTEPS by thickness and
+>           ! counterintuitive to do vertical interpolation at all on NSTEPS.
+>           ! NSTEPS will probably always be the same for all levels, so the
+>           ! vertical interpolation will be trivial. Leaving this code as is.
+720a747
+>                switchdim=.false., scale_by_thickness=accum(nf)%scale_by_thickness, &
+725,730c752,757
+< !       varname = trim(accum(nf)%name) // '_PERIOD'
+< !       call restartvar(ncid=ncid, flag=flag, varname=varname, xtype=ncd_int, &
+< !            long_name='', units='time steps', &
+< !            imissing_value=ispval, ifill_value=huge(1), &
+< !            interpinic_flag='copy', &
+< !            data=accum(nf)%period, readvar=readvar)
+---
+>        varname = trim(accum(nf)%name) // '_PERIOD'
+>        call restartvar(ncid=ncid, flag=flag, varname=varname, xtype=ncd_int, &
+>             long_name='', units='time steps', &
+>             imissing_value=ispval, ifill_value=huge(1), &
+>             interpinic_flag='copy', &
+>             data=accum(nf)%period, readvar=readvar)

@@ -1,0 +1,9 @@
+#define SETRXTFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_setrxt.F
+#define ADJRXTFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_adjrxt.F
+#define PHTADJFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_phtadj.F
+#define RXTMODFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_rxt_mod.F
+#define GRPVMRFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_make_grp_vmr.F
+#define SETDATFILE /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/Buildconf/camconf/chem_proc/tmp/mo_sim_dat.F
+#define EXPSLVPATH /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/components/cam/chem_proc/procfiles/cam
+#define IMPSLVPATH /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/components/cam/chem_proc/procfiles/cam
+#define MODSPATH /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/components/cam/chem_proc/procfiles/cam

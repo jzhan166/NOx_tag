@@ -1,0 +1,7 @@
+&comp_inparm 
+
+check_finidat_year_consistency = .false.
+
+use_init_interp = .true.
+
+/ 

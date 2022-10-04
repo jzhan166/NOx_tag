@@ -1,0 +1,1164 @@
+10,127d9
+<   <group id="run_coupling">
+<     <entry id="COUPLING_MODE" value="cesm">
+<       <type>char</type>
+<       <valid_values>cesm</valid_values>
+<       <desc>coupling mode</desc>
+<     </entry>
+<     <entry id="CPL_I2O_PER_CAT" value="FALSE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>determine if per ice thickness category fields are passed from ice to ocean - DO NOT EDIT (set by POP build-namelist)</desc>
+<     </entry>
+<     <entry id="ADD_AOFLUX_TO_RUNSEQ" value="TRUE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>add aoflux calculation to runseq</desc>
+<     </entry>
+<     <entry id="CCSM_BGC" value="CO2A">
+<       <type>char</type>
+<       <valid_values>none,CO2A,CO2B,CO2C</valid_values>
+<       <desc>Activates additional CO2-related fields to be exchanged between components. Possible values are:
+< 
+<     CO2A: sets the driver namelist variable flds_co2a = .true.; this adds
+<     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+<     the atmosphere to the land and ocean.
+< 
+<     CO2B: sets the driver namelist variable flds_co2b = .true.; this adds
+<     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+<     the atmosphere just to the land, and the surface upward flux of CO2 to be
+<     sent from the land back to the atmosphere
+< 
+<     CO2C: sets the driver namelist variable flds_co2c = .true.; this adds
+<     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+<     the atmosphere to the land and ocean, and the surface upward flux of CO2
+<     to be sent from the land and the open ocean back to the atmosphere.
+< 
+<     The namelist variables flds_co2a, flds_co2b and flds_co2c are in the
+<     namelist group cpl_flds_inparm.
+<     </desc>
+<     </entry>
+<     <entry id="NCPL_BASE_PERIOD" value="day">
+<       <type>char</type>
+<       <valid_values>hour,day,year,decade</valid_values>
+<       <desc>Base period associated with NCPL coupling frequency.
+<     This xml variable is only used to set the driver namelist variables,
+<     atm_cpl_dt, lnd_cpl_dt, ocn_cpl_dt, ice_cpl_dt, glc_cpl_dt, rof_cpl_dt, wav_cpl_dt, and esp_dt.</desc>
+<     </entry>
+<     <entry id="ATM_NCPL" value="48">
+<       <type>integer</type>
+<       <desc>Number of atm coupling intervals per NCPL_BASE_PERIOD.
+<     This is used to set the driver namelist atm_cpl_dt, equal to basedt/ATM_NCPL,
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="LND_NCPL" value="$ATM_NCPL">
+<       <type>integer</type>
+<       <desc>Number of land coupling intervals per NCPL_BASE_PERIOD.
+<     This is used to set the driver namelist atm_cpl_dt, equal to basedt/LND_NCPL,
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="ICE_NCPL" value="$ATM_NCPL">
+<       <type>integer</type>
+<       <desc>Number of ice coupling intervals per NCPL_BASE_PERIOD.
+<     This is used to set the driver namelist ice_cpl_dt, equal to basedt/ICE_NCPL
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="OCN_NCPL" value="$ATM_NCPL">
+<       <type>integer</type>
+<       <desc>Number of ocn coupling intervals per NCPL_BASE_PERIOD.
+<     Thisn is used to set the driver namelist ocn_cpl_dt, equal to basedt/OCN_NCPL
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="GLC_NCPL" value="$ATM_NCPL">
+<       <type>integer</type>
+<       <desc>Number of glc coupling intervals per NCPL_BASE_PERIOD.</desc>
+<     </entry>
+<     <entry id="GLC_AVG_PERIOD" value="yearly">
+<       <type>char</type>
+<       <valid_values>glc_coupling_period,yearly</valid_values>
+<       <desc>Period at which coupler averages fields sent to GLC.
+<     This supports doing the averaging to GLC less frequently than GLC is called
+<     (i.e., separating the averaging frequency from the calling frequency).
+<     This is useful because there are benefits to only averaging the GLC inputs
+<     as frequently as they are really needed (yearly for CISM), but GLC needs to
+<     still be called more frequently than that in order to support mid-year restarts.
+< 
+<     Setting GLC_AVG_PERIOD to 'glc_coupling_period' means that the averaging is
+<     done exactly when the GLC is called (governed by GLC_NCPL).
+< 
+<     IMPORTANT: In order to restart mid-year when running with CISM, you MUST specify GLC_AVG_PERIOD = 'yearly'.
+<     If using GLC_AVG_PERIOD = 'glc_coupling_period' with CISM, you can only restart on year boundaries.
+<     </desc>
+<     </entry>
+<     <entry id="ROF_NCPL" value="8">
+<       <type>integer</type>
+<       <desc>Number of rof coupling intervals per NCPL_BASE_PERIOD.
+<     This is used to set the driver namelist rof_cpl_dt, equal to basedt/ROF_NCPL
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="WAV_NCPL" value="$ATM_NCPL">
+<       <type>integer</type>
+<       <desc>Number of wav coupling intervals per NCPL_BASE_PERIOD.
+<     This is used to set the driver namelist wav_cpl_dt, equal to basedt/WAV_NCPL
+<     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+<     </entry>
+<     <entry id="CPL_SEQ_OPTION" value="TIGHT">
+<       <type>char</type>
+<       <valid_values>TIGHT,OPTION1,OPTION2</valid_values>
+<       <desc>
+<       OPTION1 (like RASM_OPTION1 in CPL7) runs prep_ocn_avg, 
+<       BEFORE the aoflux and ocnalb calculations, thereby reducing
+<       most of the lags and field inconsistency but still allowing the
+<       ocean to run concurrently with the ice and atmosphere.
+<       OPTION2 (like CESM1_MOD in CPL7) runs prep_ocn_avg, 
+<       AFTER the aoflux and ocnalb calculations, thereby permitting maximum
+<       concurrency
+<       TIGHT (like CESM1_MOD_TIGHT), is a tight coupling run sequence
+<     </desc>
+<     </entry>
+<   </group>
+129,132d10
+<     <entry id="LOGDIR" value="$CASEROOT/logs">
+<       <type>char</type>
+<       <desc>Extra copies of the component log files will be saved here.</desc>
+<     </entry>
+203c81
+<     <entry id="RUN_REFDIR" value="ccsm4_init">
+---
+>     <entry id="RUN_REFDIR" value="cesm2_init">
+209c87
+<     <entry id="RUN_REFCASE" value="f.e21.FWscHIST_BGC.ne30_ne30_mg17_L48_revert-J.001">
+---
+>     <entry id="RUN_REFCASE" value="f.e21.FWscHIST.ne30_L58_BL10_cam6_3_019_zm2_chemistry_2021_GEOS.002">
+215c93
+<     <entry id="RUN_REFDATE" value="1989-01-01">
+---
+>     <entry id="RUN_REFDATE" value="2021-09-01">
+235c113
+<     <entry id="RUN_STARTDATE" value="2020-01-01">
+---
+>     <entry id="RUN_STARTDATE" value="2014-01-01">
+249c127
+<       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,end</valid_values>
+---
+>       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+267c145
+<     <entry id="REST_OPTION" value="ndays">
+---
+>     <entry id="REST_OPTION" value="$STOP_OPTION">
+269c147
+<       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,end</valid_values>
+---
+>       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+274c152
+<     <entry id="REST_N" value="5">
+---
+>     <entry id="REST_N" value="$STOP_N">
+315a194
+>         <value compclass="IAC">FALSE</value>
+317a197,209
+>     <entry id="BARRIER_N" value="1">
+>       <type>char</type>
+>       <desc>
+>       Sets periodic model barriers with BARRIER_OPTION and BARRIER_DATE for synchronization
+>     </desc>
+>     </entry>
+>     <entry id="BARRIER_DATE" value="-999">
+>       <type>char</type>
+>       <desc>
+>       Alternative date in yyyymmdd format
+>       sets periodic model barriers with BARRIER_OPTION and BARRIER_N for synchronization
+>     </desc>
+>     </entry>
+344,350d235
+<     <entry id="MEDIATOR_READ_RESTART" value="FALSE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>
+<       A setting of TRUE implies a continuation run for mediator only
+<     </desc>
+<     </entry>
+371,376c256
+<     <entry id="RUN_WITH_SUBMIT" value="FALSE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>Logical to determine whether run has been submitted with the submit script or not</desc>
+<     </entry>
+<     <entry id="JOB_IDS" value="case.run:6711705.chadmin1.ib0.cheyenne.ucar.edu, case.st_archive:6711706.chadmin1.ib0.cheyenne.ucar.edu">
+---
+>     <entry id="JOB_IDS" value="case.run:6654866.chadmin1.ib0.cheyenne.ucar.edu, case.st_archive:6654867.chadmin1.ib0.cheyenne.ucar.edu">
+379a260,266
+>     <entry id="BARRIER_OPTION" value="never">
+>       <type>char</type>
+>       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+>       <desc>
+>       sets frequency of full model barrier (same options as STOP_OPTION) for synchronization with BARRIER_N and BARRIER_DATE
+>     </desc>
+>     </entry>
+432c319
+<       <valid_values>ESMF_LOGKIND_SINGLE,ESMF_LOGKIND_MULTI,ESMF_LOGKIND_NONE</valid_values>
+---
+>       <valid_values>ESMF_LOGKIND_SINGLE,ESMF_LOGKIND_MULTI,ESMF_LOGKIND_MULTI_ON_ERROR,ESMF_LOGKIND_NONE</valid_values>
+435c322
+<           USE_ESMF_LIB is TRUE.
+---
+> 	  USE_ESMF_LIB is TRUE.
+437c324
+<           all of the PETs. Not supported on some platforms.
+---
+> 	  all of the PETs. Not supported on some platforms.
+443,461d329
+<     <entry id="ESMF_VERBOSITY_LEVEL" value="off">
+<       <type>char</type>
+<       <valid_values>off,low,high,max</valid_values>
+<       <desc>
+<       Determines the verbosity level in ESMF log files
+<       "off": no verbosity
+<       "low": some verbosity
+<       "high": more verbosity
+<       "max": all lower 16 bits
+<       By default, the verbosity level is set to "off"
+<     </desc>
+<     </entry>
+<     <entry id="ESMF_PROFILING_LEVEL" value="0">
+<       <type>char</type>
+<       <desc>
+<       Determines the profiling level in ESMF log files
+<       by default, it is set to 0 (only run method execution timings)
+<     </desc>
+<     </entry>
+466,467c334,335
+<           This variable is for testing and debugging only and should never
+<           be set for a production run.
+---
+> 	  This variable is for testing and debugging only and should never
+> 	  be set for a production run.
+469a338,342
+>     <entry id="CPL_DECOMP" value="0">
+>       <type>integer</type>
+>       <valid_values>0,1,2,3,4,5,6</valid_values>
+>       <desc>Coupler decomposition option.</desc>
+>     </entry>
+472c345
+<       <valid_values>0,1,2,3,4,5,6,7,8,9</valid_values>
+---
+>       <valid_values>0,1,2,3</valid_values>
+475c348
+<     <entry id="BFBFLAG" value="FALSE">
+---
+>     <entry id="DRV_THREADING" value="FALSE">
+478c351,380
+<       <desc>turns on coupler bit-for-bit reproducibility with varying pe counts</desc>
+---
+>       <desc>Turns on component varying thread control in the driver.
+>     Used to set the driver namelist variable "drv_threading".</desc>
+>     </entry>
+>     <entry id="INFO_TASKMAP_MODEL" value="1">
+>       <type>integer</type>
+>       <valid_values>0,1,2</valid_values>
+>       <desc>Sets level of task-to-node mapping output for the whole model
+>     (0: no output; 1: compact; 2: verbose).</desc>
+>     </entry>
+>     <entry id="INFO_TASKMAP_COMP" value="0">
+>       <type>integer</type>
+>       <valid_values>0,1,2</valid_values>
+>       <desc>Sets level of task-to-node mapping output for supported component models
+>     (0: no output; 1: compact; 2: verbose).</desc>
+>     </entry>
+>     <entry id="INFO_MPROF" value="3">
+>       <type>integer</type>
+>       <valid_values>0,1,2,3,4</valid_values>
+>       <desc>Sets level of memory profile logging:
+>       0: no output
+>       1: log mem-usage from component ROOTPE tasks
+>       2: log mem-usage from all tasks
+>       3: aggregate logging to node-level mem-usage on ROOTPE nodes
+>       4: aggregate logging to node-level mem-usage on all nodes
+>       Aggregation requires INFO_TASKMAP_MODEL&gt;0.
+>     </desc>
+>     </entry>
+>     <entry id="INFO_MPROF_DT" value="86400">
+>       <type>integer</type>
+>       <desc>number of seconds between memory profiling logs</desc>
+508a411,415
+>     <entry id="BFBFLAG" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>turns on coupler bit-for-bit reproducibility with varying pe counts</desc>
+>     </entry>
+515a423,432
+>     <entry id="IOP_MODE" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>Propogate a single point to the global grid  - DO NOT EDIT (for experts only)</desc>
+>     </entry>
+>     <entry id="PTS_MODE" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>Operate on only a single point of the global grid  - DO NOT EDIT (for experts only)</desc>
+>     </entry>
+518,519c435
+<       <desc>Latitude of grid location, in single column mode interpolate datasets to this location
+<           in single point mode assume all datasets are at this location</desc>
+---
+>       <desc>Latitude to find nearest points for points mode (only used if PTS_MODE is TRUE)</desc>
+523,524c439,443
+<       <desc>Longitude of grid location, in single column mode interpolate datasets to this location
+<           in single point mode assume all datasets are at this location</desc>
+---
+>       <desc>Longitude to find nearest points for points mode (only used if PTS_MODE is TRUE)</desc>
+>     </entry>
+>     <entry id="ATM_DOMAIN_FILE" value="domain.lnd.ne30_gx1v7.171003.nc">
+>       <type>char</type>
+>       <desc>atm domain file</desc>
+526c445
+<     <entry id="PTS_DOMAINFILE" value="UNSET">
+---
+>     <entry id="ATM_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+528,532c447
+<       <desc>used only if if PTS_LAT and PTS_LON are greater than or
+<           equal to 0.  If this is the case then if PTS_DOMAINFILE is not
+<           equal to UNSET a nearest neighbor search of PTS_DOMAINFILE using
+<           PTS_LAT and PTS_LON will be done and the component mesh will have
+<           this nearest neighbor value. </desc>
+---
+>       <desc>path of atm domain file</desc>
+534c449
+<     <entry id="LND_DOMAIN_FILE" value="UNSET">
+---
+>     <entry id="LND_DOMAIN_FILE" value="domain.lnd.ne30_gx1v7.171003.nc">
+542c457,473
+<     <entry id="ATM_DOMAIN_MESH" value="$DIN_LOC_ROOT/share/meshes/ne30np4_ESMFmesh_cdf5_c20211018.nc">
+---
+>     <entry id="ROF_DOMAIN_FILE" value="UNSET">
+>       <type>char</type>
+>       <desc>rof domain file</desc>
+>     </entry>
+>     <entry id="ROF_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+>       <type>char</type>
+>       <desc>path of rof domain file</desc>
+>     </entry>
+>     <entry id="WAV_DOMAIN_FILE" value="UNSET">
+>       <type>char</type>
+>       <desc>wav domain file</desc>
+>     </entry>
+>     <entry id="WAV_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+>       <type>char</type>
+>       <desc>path of wav domain file</desc>
+>     </entry>
+>     <entry id="IAC_DOMAIN_FILE" value="UNSET">
+544c475
+<       <desc>atm mesh file (full pathname)</desc>
+---
+>       <desc>iac domain file</desc>
+546c477
+<     <entry id="LND_DOMAIN_MESH" value="$DIN_LOC_ROOT/share/meshes/ne30np4_ESMFmesh_cdf5_c20211018.nc">
+---
+>     <entry id="IAC_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+548c479
+<       <desc>lnd mesh file (full pathname)</desc>
+---
+>       <desc>path of iac domain file</desc>
+550c481
+<     <entry id="ROF_DOMAIN_MESH" value="$DIN_LOC_ROOT/share/meshes/r05_nomask_c110308_ESMFmesh.nc">
+---
+>     <entry id="ICE_DOMAIN_FILE" value="domain.ocn.ne30_gx1v7.171003.nc">
+552c483
+<       <desc>rof mesh file (full pathname)</desc>
+---
+>       <desc>ice domain file</desc>
+554c485
+<     <entry id="WAV_DOMAIN_MESH" value="UNSET">
+---
+>     <entry id="ICE_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+556c487
+<       <desc>wav mesh file (full pathname)</desc>
+---
+>       <desc>path of ice domain file</desc>
+558c489
+<     <entry id="ICE_DOMAIN_MESH" value="$DIN_LOC_ROOT/share/meshes/ne30np4_ESMFmesh_cdf5_c20211018.nc">
+---
+>     <entry id="OCN_DOMAIN_FILE" value="domain.ocn.ne30_gx1v7.171003.nc">
+560c491
+<       <desc>ice mesh file (full pahtname)</desc>
+---
+>       <desc>ocn domain file</desc>
+562c493
+<     <entry id="OCN_DOMAIN_MESH" value="$DIN_LOC_ROOT/share/meshes/ne30np4_ESMFmesh_cdf5_c20211018.nc">
+---
+>     <entry id="OCN_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+564c495
+<       <desc>ocn mesh file (full pathname)</desc>
+---
+>       <desc>path of ocn domain file</desc>
+566c497
+<     <entry id="GLC_DOMAIN_MESH" value="UNSET">
+---
+>     <entry id="GLC_DOMAIN_FILE" value="UNSET">
+568c499
+<       <desc>glc mesh file (full pathname)</desc>
+---
+>       <desc>glc domain file</desc>
+570c501
+<     <entry id="MASK_MESH" value="$DIN_LOC_ROOT/share/meshes/gx1v7_151008_ESMFmesh.nc">
+---
+>     <entry id="GLC_DOMAIN_PATH" value="$DIN_LOC_ROOT/share/domains">
+572c503
+<       <desc>mask mesh file (full pathname)</desc>
+---
+>       <desc>path of glc domain file</desc>
+577a509,513
+>     <entry id="ATM2OCN_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2ocn flux mapping file decomp type</desc>
+>     </entry>
+581a518,522
+>     <entry id="ATM2OCN_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2ocn state mapping file decomp type</desc>
+>     </entry>
+585a527,531
+>     <entry id="ATM2OCN_VMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2ocn vector mapping file decomp type</desc>
+>     </entry>
+589a536,540
+>     <entry id="ATM2LND_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2lnd flux mapping file decomp type</desc>
+>     </entry>
+594c545,568
+<     <entry id="ATM2WAV_SMAPNAME" value="unset">
+---
+>     <entry id="ATM2LND_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2lnd state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ATM2ROF_FMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>atm2rof flux mapping file</desc>
+>     </entry>
+>     <entry id="ATM2ROF_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2rof flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ATM2ROF_SMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>atm2rof state mapping file</desc>
+>     </entry>
+>     <entry id="ATM2ROF_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2rof state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ATM2WAV_SMAPNAME" value="idmap">
+597a572,576
+>     <entry id="ATM2WAV_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>atm2wav state mapping file decomp type</desc>
+>     </entry>
+601a581,585
+>     <entry id="OCN2ATM_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>ocn2atm flux mapping file decomp type</desc>
+>     </entry>
+605a590,594
+>     <entry id="OCN2ATM_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>ocn2atm state mapping file decomp type</desc>
+>     </entry>
+609a599,603
+>     <entry id="LND2ATM_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>lnd2atm flux mapping file decomp type</desc>
+>     </entry>
+614c608,631
+<     <entry id="LND2ROF_FMAPNAME" value="unset">
+---
+>     <entry id="LND2ATM_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>lnd2atm state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="LND2GLC_FMAPNAME" value="cpl/gridmaps/ne30np4/map_ne30np4_TO_gland4km_aave.170429.nc">
+>       <type>char</type>
+>       <desc>lnd2glc flux mapping file</desc>
+>     </entry>
+>     <entry id="LND2GLC_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>lnd2glc flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="LND2GLC_SMAPNAME" value="cpl/gridmaps/ne30np4/map_ne30np4_TO_gland4km_blin.170429.nc">
+>       <type>char</type>
+>       <desc>lnd2glc state mapping file</desc>
+>     </entry>
+>     <entry id="LND2GLC_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>lnd2glc state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="LND2ROF_FMAPNAME" value="lnd/clm2/mappingdata/maps/ne30np4/map_ne30np4_to_0.5x0.5rtm_aave_da_110320.nc">
+618c635,640
+<     <entry id="ROF2LND_FMAPNAME" value="unset">
+---
+>     <entry id="LND2ROF_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>lnd2rof flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ROF2LND_FMAPNAME" value="lnd/clm2/mappingdata/maps/ne30np4/map_0.5x0.5_nomask_to_ne30np4_nomask_aave_da_c121019.nc">
+622c644,649
+<     <entry id="ROF2OCN_FMAPNAME" value="unset">
+---
+>     <entry id="ROF2LND_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>rof2lnd flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ROF2OCN_FMAPNAME" value="idmap">
+624c651,652
+<       <desc>rof2ocn flux mapping file</desc>
+---
+>       <desc>rof2ocn flux mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+626c654,659
+<     <entry id="ROF2OCN_LIQ_RMAPNAME" value="unset">
+---
+>     <entry id="ROF2OCN_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>rof2ocn flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ROF2OCN_LIQ_RMAPNAME" value="idmap">
+630c663,668
+<     <entry id="ROF2OCN_ICE_RMAPNAME" value="unset">
+---
+>     <entry id="ROF2OCN_LIQ_RMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>rof2ocn runoff mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ROF2OCN_ICE_RMAPNAME" value="idmap">
+634c672,770
+<     <entry id="GLC2ICE_RMAPNAME" value="idmap">
+---
+>     <entry id="ROF2OCN_ICE_RMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>rof2ocn runoff mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2LND_FMAPNAME" value="cpl/gridmaps/gland4km/map_gland4km_TO_ne30np4_aave.170429.nc">
+>       <type>char</type>
+>       <desc>glc2lnd flux mapping file</desc>
+>     </entry>
+>     <entry id="GLC2LND_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2lnd flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2LND_SMAPNAME" value="cpl/gridmaps/gland4km/map_gland4km_TO_ne30np4_aave.170429.nc">
+>       <type>char</type>
+>       <desc>glc2lnd state mapping file</desc>
+>     </entry>
+>     <entry id="GLC2LND_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2lnd state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2ICE_FMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ice flux mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2ICE_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ice flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2ICE_SMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ice state mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2ICE_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ice state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2ICE_RMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ice runoff mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2ICE_RMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ice runoff mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2OCN_FMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ocn flux mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2OCN_FMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ocn flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2OCN_SMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ocn state mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2OCN_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ocn state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="GLC2OCN_LIQ_RMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ocn runoff mapping file for liquid runoff - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2OCN_LIQ_RMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ocn runoff mapping file decomp type for liquid runoff</desc>
+>     </entry>
+>     <entry id="GLC2OCN_ICE_RMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>glc2ocn runoff mapping file for ice runoff - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="GLC2OCN_ICE_RMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>glc2ocn runoff mapping file decomp type for ice runoff</desc>
+>     </entry>
+>     <entry id="OCN2GLC_FMAPNAME" value="idmap_ignore">
+>       <type>char</type>
+>       <desc>ocn2glc flux mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+>     </entry>
+>     <entry id="OCN2GLC_FMAPTYPE" value="Y">
+636c772,773
+<       <desc>glc2ice runoff mapping file</desc>
+---
+>       <valid_values>X,Y</valid_values>
+>       <desc>ocn2glc flux mapping file decomp type</desc>
+638c775
+<     <entry id="GLC2OCN_LIQ_RMAPNAME" value="idmap">
+---
+>     <entry id="OCN2GLC_SMAPNAME" value="idmap_ignore">
+640c777,778
+<       <desc>glc2ocn runoff mapping file for liquid runoff</desc>
+---
+>       <desc>ocn2glc state mapping file - the default value idmap_ignore, if set, will be ignored by buildnml and
+>     will generate a runtime error if in fact a file is required for the given compset</desc>
+642c780
+<     <entry id="GLC2OCN_ICE_RMAPNAME" value="idmap">
+---
+>     <entry id="OCN2GLC_SMAPTYPE" value="Y">
+644c782,783
+<       <desc>glc2ocn runoff mapping file for ice runoff</desc>
+---
+>       <valid_values>X,Y</valid_values>
+>       <desc>ocn2glc state mapping file decomp type</desc>
+646c785
+<     <entry id="OCN2WAV_SMAPNAME" value="unset">
+---
+>     <entry id="OCN2WAV_SMAPNAME" value="idmap">
+650c789,794
+<     <entry id="ICE2WAV_SMAPNAME" value="unset">
+---
+>     <entry id="OCN2WAV_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>ocn2wav state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="ICE2WAV_SMAPNAME" value="idmap">
+654c798,803
+<     <entry id="WAV2OCN_SMAPNAME" value="unset">
+---
+>     <entry id="ICE2WAV_SMAPTYPE" value="Y">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>ice2wav state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="WAV2OCN_SMAPNAME" value="idmap">
+657a807,852
+>     <entry id="WAV2OCN_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>wav2ocn state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="IAC2ATM_FMAPNAME" value="idmap">
+>       <type>char</type>
+>       <desc>iac2atm flux mapping file</desc>
+>     </entry>
+>     <entry id="IAC2ATM_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>iac2atm flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="IAC2ATM_SMAPNAME" value="idmap">
+>       <type>char</type>
+>       <desc>iac2atm state mapping file</desc>
+>     </entry>
+>     <entry id="IAC2ATM_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>iac2atm state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="IAC2LND_FMAPNAME" value="idmap">
+>       <type>char</type>
+>       <desc>iac2lnd flux mapping file</desc>
+>     </entry>
+>     <entry id="IAC2LND_FMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>iac2lnd flux mapping file decomp type</desc>
+>     </entry>
+>     <entry id="IAC2LND_SMAPNAME" value="idmap">
+>       <type>char</type>
+>       <desc>iac2lnd state mapping file</desc>
+>     </entry>
+>     <entry id="IAC2LND_SMAPTYPE" value="X">
+>       <type>char</type>
+>       <valid_values>X,Y</valid_values>
+>       <desc>iac2lnd state mapping file decomp type</desc>
+>     </entry>
+>     <entry id="VECT_MAP" value="cart3d">
+>       <type>char</type>
+>       <valid_values>none,npfix,cart3d,cart3d_diag,cart3d_uvw,cart3d_uvw_diag</valid_values>
+>       <desc>vector mapping option</desc>
+>     </entry>
+682c877
+<     <entry id="EPS_OGRID" value="1.0e-02">
+---
+>     <entry id="EPS_OGRID" value="1.0e-01">
+697,698c892,907
+<       A regular expression to search for an indication that a run failure was caused by a node failure
+<       and should therefore be re-attempted.
+---
+>       A regular expression to search for an indication that a run failure
+>        was caused by a node failure and should therefore be re-attempted.
+>     </desc>
+>     </entry>
+>     <entry id="MPIRUN_RETRY_REGEX" value="MPT: Launcher network accept (MPI_LAUNCH_TIMEOUT) timed out">
+>       <type>char</type>
+>       <desc>
+>       A regular expression to search for an indication that a run failure
+>       was caused by a known event such as a timeout and should therefore
+>       be re-attempted.
+>     </desc>
+>     </entry>
+>     <entry id="MPIRUN_RETRY_COUNT" value="10">
+>       <type>integer</type>
+>       <desc>The number of times to reattempt the mpirun command if
+>     MPIRUN_RETRY_REGEX is matched but ALLOCATE_SPARE_NODES is False
+732,741d940
+<     <entry id="DIN_STAGING_ROOT" value="UNSET">
+<       <type>char</type>
+<       <desc>
+<       On some systems the filesystem of DIN_LOC_ROOT is not available on compute nodes and
+<       data must be staged to a temporary location.  If this variable is defined it will
+<       be used as the root directory of an inputdata staging area.
+<       Default values for the target machine are in the
+<       $CIMEROOT/machines/config_machines.xml
+<     </desc>
+<     </entry>
+755a955,959
+>     <entry id="PIO_ASYNC_INTERFACE" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>TRUE implies perform asynchronous i/o</desc>
+>     </entry>
+766c970
+<     <entry id="PIO_REARR_COMM_MAX_PEND_REQ_COMP2IO" value="-2">
+---
+>     <entry id="PIO_REARR_COMM_MAX_PEND_REQ_COMP2IO" value="0">
+769,773c973
+<       <desc>pio rearranger communication max pending requests (io2comp) :
+<        -2 implies that CIME internally calculates the value ( = 64),
+<        -1 implies no bound on max pending requests
+<         0 implies that MPI_ALLTOALL will be used
+<     </desc>
+---
+>       <desc>pio rearranger communication max pending requests (comp2io) : 0 implies that CIME internally calculates the value ( = max(64, 2 * PIO_NUMTASKS) ), -1 implies no bound on max pending requests </desc>
+788c988
+<       <desc>pio rearranger communication max pending requests (io2comp) : -1 implies no bound on max pending requests </desc>
+---
+>       <desc>pio rearranger communication max pending requests (io2comp) : 0 implies that CIME internally calculates the value (= 64), -1 implies no bound on max pending requests </desc>
+812,827d1011
+<     <entry id="PIO_ASYNC_INTERFACE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>TRUE implies perform asynchronous i/o</desc>
+<       <values>
+<         <value compclass="ATM">FALSE</value>
+<         <value compclass="CPL">FALSE</value>
+<         <value compclass="OCN">FALSE</value>
+<         <value compclass="WAV">FALSE</value>
+<         <value compclass="GLC">FALSE</value>
+<         <value compclass="ICE">FALSE</value>
+<         <value compclass="ROF">FALSE</value>
+<         <value compclass="LND">FALSE</value>
+<         <value compclass="ESP">FALSE</value>
+<       </values>
+<     </entry>
+830c1014
+<       <valid_values>netcdf,pnetcdf,netcdf4p,netcdf4c,nothing</valid_values>
+---
+>       <valid_values>netcdf,pnetcdf,nothing</valid_values>
+841a1026
+>         <value compclass="IAC">pnetcdf</value>
+859a1045
+>         <value compclass="IAC">64bit_offset</value>
+877a1064
+>         <value compclass="IAC">$MAX_MPITASKS_PER_NODE</value>
+885,893c1072,1081
+<         <value compclass="ATM">2</value>
+<         <value compclass="CPL">2</value>
+<         <value compclass="OCN">2</value>
+<         <value compclass="WAV">2</value>
+<         <value compclass="GLC">2</value>
+<         <value compclass="ICE">2</value>
+<         <value compclass="ROF">2</value>
+<         <value compclass="LND">2</value>
+<         <value compclass="ESP">2</value>
+---
+>         <value compclass="ATM">$PIO_VERSION</value>
+>         <value compclass="CPL">$PIO_VERSION</value>
+>         <value compclass="OCN">$PIO_VERSION</value>
+>         <value compclass="WAV">$PIO_VERSION</value>
+>         <value compclass="GLC">$PIO_VERSION</value>
+>         <value compclass="ICE">$PIO_VERSION</value>
+>         <value compclass="ROF">$PIO_VERSION</value>
+>         <value compclass="LND">$PIO_VERSION</value>
+>         <value compclass="ESP">$PIO_VERSION</value>
+>         <value compclass="IAC">$PIO_VERSION</value>
+908a1097
+>         <value compclass="IAC">1</value>
+926a1116
+>         <value compclass="IAC">-99</value>
+929a1120,1262
+>   <group id="run_coupling">
+>     <entry id="CPL_I2O_PER_CAT" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>determine if per ice thickness category fields are passed from ice to ocean - DO NOT EDIT (set by POP build-namelist)</desc>
+>     </entry>
+>     <entry id="CCSM_BGC" value="CO2A">
+>       <type>char</type>
+>       <valid_values>none,CO2A,CO2B,CO2C</valid_values>
+>       <desc>Activates additional CO2-related fields to be exchanged between components. Possible values are:
+> 
+>     CO2A: sets the driver namelist variable flds_co2a = .true.; this adds
+>     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+>     the atmosphere to the land and ocean.
+> 
+>     CO2B: sets the driver namelist variable flds_co2b = .true.; this adds
+>     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+>     the atmosphere just to the land, and the surface upward flux of CO2 to be
+>     sent from the land back to the atmosphere
+> 
+>     CO2C: sets the driver namelist variable flds_co2c = .true.; this adds
+>     prognostic CO2 and diagnostic CO2 at the lowest model level to be sent from
+>     the atmosphere to the land and ocean, and the surface upward flux of CO2
+>     to be sent from the land and the open ocean back to the atmosphere.
+> 
+>     The namelist variables flds_co2a, flds_co2b and flds_co2c are in the
+>     namelist group cpl_flds_inparm.
+>     </desc>
+>     </entry>
+>     <entry id="NCPL_BASE_PERIOD" value="day">
+>       <type>char</type>
+>       <valid_values>hour,day,year,decade</valid_values>
+>       <desc>Base period associated with NCPL coupling frequency.
+>     This xml variable is only used to set the driver namelist variables,
+>     atm_cpl_dt, lnd_cpl_dt, ocn_cpl_dt, ice_cpl_dt, glc_cpl_dt, rof_cpl_dt, wav_cpl_dt, and esp_dt.</desc>
+>     </entry>
+>     <entry id="ATM_NCPL" value="48">
+>       <type>integer</type>
+>       <desc>Number of atm coupling intervals per NCPL_BASE_PERIOD.
+>     This is used to set the driver namelist atm_cpl_dt, equal to basedt/ATM_NCPL,
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="LND_NCPL" value="$ATM_NCPL">
+>       <type>integer</type>
+>       <desc>Number of land coupling intervals per NCPL_BASE_PERIOD.
+>     This is used to set the driver namelist atm_cpl_dt, equal to basedt/LND_NCPL,
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="ICE_NCPL" value="$ATM_NCPL">
+>       <type>integer</type>
+>       <desc>Number of ice coupling intervals per NCPL_BASE_PERIOD.
+>     This is used to set the driver namelist ice_cpl_dt, equal to basedt/ICE_NCPL
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="OCN_NCPL" value="$ATM_NCPL">
+>       <type>integer</type>
+>       <desc>Number of ocn coupling intervals per NCPL_BASE_PERIOD.
+>     Thisn is used to set the driver namelist ocn_cpl_dt, equal to basedt/OCN_NCPL
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="GLC_NCPL" value="1">
+>       <type>integer</type>
+>       <desc>Number of glc coupling intervals per NCPL_BASE_PERIOD.</desc>
+>     </entry>
+>     <entry id="GLC_AVG_PERIOD" value="yearly">
+>       <type>char</type>
+>       <valid_values>glc_coupling_period,yearly</valid_values>
+>       <desc>Period at which coupler averages fields sent to GLC.
+>     This supports doing the averaging to GLC less frequently than GLC is called
+>     (i.e., separating the averaging frequency from the calling frequency).
+>     This is useful because there are benefits to only averaging the GLC inputs
+>     as frequently as they are really needed (yearly for CISM), but GLC needs to
+>     still be called more frequently than that in order to support mid-year restarts.
+> 
+>     Setting GLC_AVG_PERIOD to 'glc_coupling_period' means that the averaging is
+>     done exactly when the GLC is called (governed by GLC_NCPL).
+> 
+>     IMPORTANT: In order to restart mid-year when running with CISM, you MUST specify GLC_AVG_PERIOD = 'yearly'.
+>     If using GLC_AVG_PERIOD = 'glc_coupling_period' with CISM, you can only restart on year boundaries.
+>     </desc>
+>     </entry>
+>     <entry id="ROF_NCPL" value="8">
+>       <type>integer</type>
+>       <desc>Number of rof coupling intervals per NCPL_BASE_PERIOD.
+>     This is used to set the driver namelist rof_cpl_dt, equal to basedt/ROF_NCPL
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="WAV_NCPL" value="$ATM_NCPL">
+>       <type>integer</type>
+>       <desc>Number of wav coupling intervals per NCPL_BASE_PERIOD.
+>     This is used to set the driver namelist wav_cpl_dt, equal to basedt/WAV_NCPL
+>     where basedt is equal to NCPL_BASE_PERIOD in seconds.</desc>
+>     </entry>
+>     <entry id="CPL_SEQ_OPTION" value="CESM1_MOD_TIGHT">
+>       <type>char</type>
+>       <valid_values>CESM1_MOD,CESM1_MOD_TIGHT,RASM_OPTION1,RASM_OPTION2,NUOPC,NUOPC_TIGHT</valid_values>
+>       <desc>
+>       Coupler sequencing option. This is used to set the driver namelist variable cpl_seq_option.
+>       CESM1_MOD includes a cesm1.3 mod that swaps ocean merging and atm/ocn flux
+>       computation.
+>       RASM_OPTION1 runs prep ocean before the ocean coupling reducing
+>       most of the lags and field inconsistency but still allowing the ocean to run
+>       concurrently with the ice and atmosphere.
+>       RASM_OPTION2 is similar to RASM_OPTION1
+>       but sequences the ice model, prep ocean and ocean model in that order.  The
+>       ocean model loses some of the concurrency with the ice model.
+>       CESM1_MOD_TIGHT are consistent with the old variables ocean_tight_coupling = true in the driver.
+>     </desc>
+>     </entry>
+>   </group>
+>   <group id="run_drv_history">
+>     <entry id="HIST_OPTION" value="never">
+>       <type>char</type>
+>       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+>       <desc>Sets driver snapshot history file frequency (like REST_OPTION)</desc>
+>     </entry>
+>     <entry id="HIST_N" value="-999">
+>       <type>integer</type>
+>       <valid_values/>
+>       <desc>Sets driver snapshot history file frequency (like REST_N)
+>     </desc>
+>     </entry>
+>     <entry id="HIST_DATE" value="-999">
+>       <type>integer</type>
+>       <valid_values/>
+>       <desc>yyyymmdd format, sets coupler snapshot history date (like REST_DATE)</desc>
+>     </entry>
+>     <entry id="AVGHIST_OPTION" value="never">
+>       <type>char</type>
+>       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+>       <desc>Sets driver average history file frequency (like REST_OPTION)</desc>
+>     </entry>
+>     <entry id="AVGHIST_N" value="-999">
+>       <type>char</type>
+>       <valid_values/>
+>       <desc>Sets driver average history file frequency (like REST_N)</desc>
+>     </entry>
+>     <entry id="AVGHIST_DATE" value="-999">
+>       <type>integer</type>
+>       <valid_values/>
+>       <desc>yyyymmdd format, sets driver average history date (like REST_DATE)</desc>
+>     </entry>
+>   </group>
+951a1285
+>         <value compclass="IAC">FALSE</value>
+970,983d1303
+<   <group id="data_models">
+<     <entry id="FORCE_PROGNOSTIC_FOR_DATAMODELS" value="FALSE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>if true, all data models are expected to get input sent back from the mediator</desc>
+<     </entry>
+<   </group>
+<   <group id="run_debug">
+<     <entry id="CREATE_ESMF_PET_FILES" value="FALSE">
+<       <type>logical</type>
+<       <valid_values>TRUE,FALSE</valid_values>
+<       <desc>if true, create ESMF PET log files even if there is no error encountered </desc>
+<     </entry>
+<   </group>
+1017,1048d1336
+<   <group id="med_history">
+<     <entry id="HIST_OPTION" value="never">
+<       <type>char</type>
+<       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+<       <desc>Sets driver snapshot history file frequency (like REST_OPTION)</desc>
+<     </entry>
+<     <entry id="HIST_N" value="-999">
+<       <type>integer</type>
+<       <valid_values/>
+<       <desc>Sets driver snapshot history file frequency (like REST_N)</desc>
+<     </entry>
+<     <entry id="HIST_DATE" value="-999">
+<       <type>integer</type>
+<       <valid_values/>
+<       <desc>yyyymmdd format, sets coupler snapshot history date (like REST_DATE)</desc>
+<     </entry>
+<     <entry id="AVGHIST_OPTION" value="never">
+<       <type>char</type>
+<       <valid_values>none,never,nsteps,nstep,nseconds,nsecond,nminutes,nminute,nhours,nhour,ndays,nday,nmonths,nmonth,nyears,nyear,date,ifdays0,end</valid_values>
+<       <desc>Sets mediator average history file frequency (like REST_OPTION)</desc>
+<     </entry>
+<     <entry id="AVGHIST_N" value="-999">
+<       <type>char</type>
+<       <valid_values/>
+<       <desc>Sets mediator average history file frequency (like REST_N)</desc>
+<     </entry>
+<     <entry id="AVGHIST_DATE" value="-999">
+<       <type>integer</type>
+<       <valid_values/>
+<       <desc>yyyymmdd format, sets mediator average history date (like REST_DATE)</desc>
+<     </entry>
+<   </group>
+1074c1362
+<     <entry id="GLC_TWO_WAY_COUPLING" value="FALSE">
+---
+>     <entry id="GLC_TWO_WAY_COUPLING" value="TRUE">
+1158c1446
+<     <entry id="CLM_BLDNML_OPTS" value="-bgc sp">
+---
+>     <entry id="CLM_BLDNML_OPTS" value="-bgc bgc -crop">
+1197,1204d1484
+<     <entry id="CLM_USRDAT_DIR" value="UNSET">
+<       <type>char</type>
+<       <desc>Directory name for user-created surface, landuse, and datm datasets.
+<       This is used as an argument in user_mods namelists (e.g. user_nl_clm,
+<       user_nl_datm_streams) generated with the subset_data script. Users
+<       should modify this variable (in shell_commands or elsewhere) to set the
+<       location of user-created data. The default value is UNSET.</desc>
+<     </entry>
+1214,1238d1493
+<     <entry id="NEONSITE">
+<       <type>char</type>
+<       <valid_values>
+<       ABBY,BLAN,CPER,DEJU,GRSM,HEAL,KONA,LENO,NIWO,ONAQ,PUUM,SERC,SRER,TALL,TREE,WOOD,
+<       BARR,BONA,DCFS,DELA,GUAN,JERC,KONZ,MLBS,NOGP,ORNL,RMNP,SJER,STEI,TEAK,UKFS,WREF,
+<       BART,CLBJ,DSNY,HARV,JORN,LAJA,MOAB,OAES,OSBS,SCBI,SOAP,STER,TOOL,UNDE,YELL
+<     </valid_values>
+<       <desc>Name of site for NEON tower data</desc>
+<     </entry>
+<   </group>
+<   <group id="build_component_cice">
+<     <entry id="CICE_MODE" value="prescribed">
+<       <type>char</type>
+<       <valid_values>prognostic,prescribed,thermo_only</valid_values>
+<       <desc>Option to the CICE configure utility for the -mode argument (default is prognostic)</desc>
+<     </entry>
+<     <entry id="CICE_CONFIG_OPTS" value=" -phys cice5 ">
+<       <type>char</type>
+<       <desc>CICE configure options, see CICE configure utility for details.
+<       It is recommended that if you want to modify this value for your experiment,
+<       you should use your own user-defined component sets via using create_newcase
+<       with a compset_file argument.
+<       This is an advanced flag and should only be used by expert users.
+<     </desc>
+<     </entry>
+1289,1290c1544,1545
+<     <entry id="DOCN_AQPCONST_VALUE" value="-1">
+<       <type>real</type>
+---
+>     <entry id="DOCN_SOM_FILENAME" value="UNSET">
+>       <type>char</type>
+1292c1547,1548
+<       <desc>Sets globally constant SST value</desc>
+---
+>       <desc>Sets SOM forcing filename.
+>     This is only used when DOCN_MODE=som.</desc>
+1294c1550
+<     <entry id="DOCN_SOMAQP_DATAFILE" value="unset">
+---
+>     <entry id="DOCN_AQP_FILENAME" value="UNSET">
+1297c1553,1559
+<       <desc>Sets SOM aquaplanet file</desc>
+---
+>       <desc>Sets aquaplanet forcing filename instead of using an analytic form.
+>     This is only used when DOCN_MODE=sst_aquapfile.</desc>
+>     </entry>
+>     <entry id="DOCN_AQPCONST_VALUE" value="-1">
+>       <type>real</type>
+>       <valid_values/>
+>       <desc>Sets globally constant SST value</desc>
+1357c1619,1631
+<     <entry id="MOSART_IGNORE_WARNINGS" value="FALSE">
+---
+>     <entry id="MOSART_SIMYR" value="1850">
+>       <type>char</type>
+>       <valid_values/>
+>       <desc>MOSART build-namelist options</desc>
+>     </entry>
+>   </group>
+>   <group id="run_component_cism">
+>     <entry id="CISM_PHYS" value="cism2">
+>       <type>char</type>
+>       <valid_values>cism1,cism2</valid_values>
+>       <desc>Version of CISM physics/dynamics to use</desc>
+>     </entry>
+>     <entry id="CISM_EVOLVE" value="FALSE">
+1360c1634,1639
+<       <desc>If warnings in namelist setttings from buildnml should be ignored or not</desc>
+---
+>       <desc>Whether CISM ice evolution is on or off.
+> 
+>      Setting CISM_EVOLVE to FALSE in a hybrid case also forces the use
+>      of observed initial conditions, as if you had also set
+>      CISM_OBSERVED_IC=TRUE.
+>      </desc>
+1362,1365c1641,1656
+<     <entry id="MOSART_SIM_YEAR" value="1850">
+<       <type>char</type>
+<       <valid_values/>
+<       <desc>Simulation year to start from -- build-namelist options (currently not used)</desc>
+---
+>     <entry id="CISM_OBSERVED_IC" value="FALSE">
+>       <type>logical</type>
+>       <valid_values>TRUE,FALSE</valid_values>
+>       <desc>For hybrid runs, whether CISM should use observed initial
+>     conditions instead of restart file.
+> 
+>     For hybrid runs, a value of FALSE (default) implies that CISM should
+>     use the restart file from the reference case; a value of TRUE
+>     implies that CISM should instead use the observed initial conditions
+>     that are generally used for startup runs. This variable is ignored
+>     for startup runs; for branch runs, it must be FALSE.
+> 
+>     Note that setting CISM_EVOLVE to FALSE in a hybrid case also forces
+>     the use of observed initial conditions, as if you had also set
+>     CISM_OBSERVED_IC=TRUE.
+>     </desc>

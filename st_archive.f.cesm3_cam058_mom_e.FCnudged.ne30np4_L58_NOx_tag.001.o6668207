@@ -1,0 +1,62 @@
+Setting resource.RLIMIT_STACK to -1 from (-1, -1)
+st_archive starting
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/atm.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/atm.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/cesm.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/cesm.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/ocn.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/ocn.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/med.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/med.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/lnd.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/lnd.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/preview_run.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/preview_run.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/ice.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/ice.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/rof.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/rof.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/drv.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/logs/drv.log.6668206.chadmin1.ib0.cheyenne.ucar.edu.221001-165834.gz
+-------------------------------------------
+Archiving restarts for date date(2011, 1, 6, 0, 0, 0)
+-------------------------------------------
+Archiving restarts for cam (atm)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.r.2011-01-06-00000.nc
+Copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-06-00000.nc
+Copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-06-00000.nc
+Copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-06-00000.nc
+Copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h7.2011-01-01-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h7.2011-01-01-00000.nc
+ WARNING: ncdump -v nhfil /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rh0.2011-01-06-00000.nc  failed rc=1
+    out=
+    err=ncdump: nhfil: No such variable
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rh0.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rh0.2011-01-06-00000.nc
+ WARNING: ncdump -v nhfil /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rs.2011-01-06-00000.nc  failed rc=1
+    out=
+    err=ncdump: nhfil: No such variable
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rs.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.rs.2011-01-06-00000.nc
+Archiving restarts for clm (lnd)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.clm2.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.clm2.r.2011-01-06-00000.nc
+ WARNING: ncdump -v locfnh /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.clm2.rh0.2011-01-06-00000.nc  failed rc=1
+    out=
+    err=ncdump: locfnh: No such variable
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.clm2.rh0.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.clm2.rh0.2011-01-06-00000.nc
+Archiving restarts for cice (ice)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cice.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cice.r.2011-01-06-00000.nc
+Archiving restarts for docn (ocn)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.docn.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.docn.r.2011-01-06-00000.nc
+Archiving restarts for mosart (rof)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.mosart.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.mosart.r.2011-01-06-00000.nc
+ WARNING: ncdump -v locfnh /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.mosart.rh0.2011-01-06-00000.nc  failed rc=1
+    out=
+    err=ncdump: locfnh: No such variable
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.mosart.rh0.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.mosart.rh0.2011-01-06-00000.nc
+Archiving restarts for drv (cpl)
+copying file /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cpl.r.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/rest/2011-01-06-00000/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cpl.r.2011-01-06-00000.nc
+Archiving restarts for dart (esp)
+Archiving history files for cam (atm)
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-01-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-01-00000.nc 
+copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h1.2011-01-06-00000.nc 
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-01-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-01-00000.nc 
+copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h2.2011-01-06-00000.nc 
+moving /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-01-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-01-00000.nc 
+copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-06-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h3.2011-01-06-00000.nc 
+copying /glade/scratch/jzhan166/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/run/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h7.2011-01-01-00000.nc to /glade/scratch/jzhan166/archive/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001/atm/hist/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001.cam.h7.2011-01-01-00000.nc 
+Archiving history files for clm (lnd)
+Archiving history files for cice (ice)
+Archiving history files for docn (ocn)
+Archiving history files for mosart (rof)
+Archiving history files for drv (cpl)
+Archiving history files for dart (esp)
+st_archive completed

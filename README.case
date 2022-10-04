@@ -1,0 +1,54 @@
+2022-10-01 10:56:55: ./create_clone --clone /glade/p/cesm/chwg_dev/tilmes/cases/cesm2_ch/CAM7_tests/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024 --case /glade/p/acom/acom-climate/jzhan166/cases/NOx_tag/f.cesm3_cam058_mom_e.FCnudged.ne30np4_L58_NOx_tag.001 --cime-output-root /glade/scratch/jzhan166
+ ---------------------------------------------------
+2022-10-01 10:56:55: Compset longname is HIST_CAM60%WCSC_CLM50%SP_CICE%PRES_DOCN%DOM_MOSART_SGLC_SWAV_SESP
+ ---------------------------------------------------
+2022-10-01 10:56:55: Compset specification file is /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cam//cime_config/config_compsets.xml
+ ---------------------------------------------------
+2022-10-01 10:56:55: Pes     specification file is /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/cime/../components/cam//cime_config/config_pes.xml
+ ---------------------------------------------------
+
+    *** original clone README follows ****
+ 2022-09-04 13:03:55: ./create_newcase --compset FWscHIST --res ne30_ne30_mg17 --case /glade/p/cesm/chwg_dev/tilmes/cases/cesm2_ch/CAM7_tests/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024 --run-unsupported --pecount 3600 --project 93300043 --driver nuopc
+ ---------------------------------------------------
+2022-09-04 13:03:55: Compset longname is HIST_CAM60%WCSC_CLM50%SP_CICE%PRES_DOCN%DOM_MOSART_SGLC_SWAV_SESP
+ ---------------------------------------------------
+2022-09-04 13:03:55: Compset specification file is /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/components/cam//cime_config/config_compsets.xml
+ ---------------------------------------------------
+2022-09-04 13:03:55: Pes     specification file is /glade/work/hannay/cesm_tags/cesm3_cam6_3_058_MOM_e/components/cam//cime_config/config_pes.xml
+ ---------------------------------------------------
+2022-09-04 13:03:55: Forcing is Historic transient 
+ ---------------------------------------------------
+2022-09-04 13:03:55: Using 1 coupler instances
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component ATM is CAM cam6 physics:WACCM specified chemistry:
+ ---------------------------------------------------
+2022-09-04 13:03:55: ATM_GRID is ne30np4
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component LND is clm5.0:Satellite phenology:
+ ---------------------------------------------------
+2022-09-04 13:03:55: LND_GRID is ne30np4
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component ICE is Sea ICE (cice) model version 6 :prescribed cice
+ ---------------------------------------------------
+2022-09-04 13:03:55: ICE_GRID is ne30np4
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component OCN is DOCN   prescribed ocean mode
+ ---------------------------------------------------
+2022-09-04 13:03:55: OCN_GRID is ne30np4
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component ROF is MOSART: MOdel for Scale Adaptive River Transport
+ ---------------------------------------------------
+2022-09-04 13:03:55: ROF_GRID is r05
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component GLC is Stub glacier (land ice) component
+ ---------------------------------------------------
+2022-09-04 13:03:55: GLC_GRID is null
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component WAV is Stub wave component
+ ---------------------------------------------------
+2022-09-04 13:03:55: WAV_GRID is null
+ ---------------------------------------------------
+2022-09-04 13:03:55: Component ESP is Stub external system processing (ESP) component
+ ---------------------------------------------------
+2022-09-04 13:03:55: ESP_GRID is None
+ ---------------------------------------------------

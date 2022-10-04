@@ -1,0 +1,16 @@
+63a64
+>   integer,  public :: xmpan_ndx
+1097a1099,1107
+> !jzhan166 9/26/2022 new XNOX
+>           case( 'XO3' )
+>              test_name = 'OX'
+>           case( 'XISOPNO3' )
+>              test_name = 'ISOPNO3'
+>           case( 'XNOA', 'XALKNIT', 'XISOPNITA', 'XISOPNITB', 'XHONITR', 'XISOPNOOH' )
+>                 test_name = 'H2O2'
+>           case( 'XNC4CHO', 'XNC4CH2OH', 'XTERPNIT', 'XNTERPOOH' )
+>                 test_name = 'H2O2'
+1128a1139,1141
+> !jzhan166 9/26/2022
+>        if ( trim(drydep_list(i)) == 'XO3' ) o3a_ndx  = i
+>        if ( trim(drydep_list(i)) == 'XMPAN' ) xmpan_ndx = i
