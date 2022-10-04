@@ -323,7 +323,7 @@
       <valid_values>eul,fv,fv3,se,mpas</valid_values>
       <desc>CAM dynamical core</desc>
     </entry>
-    <entry id="CAM_CONFIG_OPTS" value="-phys cam_dev -microphys mg2 -age_of_air_trcs -chem trop_strat_mam4_vbs -nlev 58">
+    <entry id="CAM_CONFIG_OPTS" value="-phys cam_dev -microphys mg2 -age_of_air_trcs -chem trop_strat_mam4_vbs -nlev 58 -nadv 202">
       <type>char</type>
       <valid_values/>
       <desc>
