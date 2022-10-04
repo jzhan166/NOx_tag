@@ -1,3 +1,11 @@
 Buildconf
 run.*
 logs
+cmake_macros
+replay.sh
+CaseStatus
+Macros.cmake
+.case.run
+env_workflow.xml
+software_environment.txt
+
