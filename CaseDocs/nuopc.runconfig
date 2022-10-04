@@ -86,7 +86,7 @@ ALLCOMP_attributes::
      WAV_model = swav
      brnch_retain_casename = .false.
      case_desc = UNSET
-     case_name = f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024
+     case_name = NOx_tag_git
      cism_evolve = .false.
      coldair_outbreak_mod = .true.
      flds_bgc_oi = .false.
@@ -125,7 +125,7 @@ ALLCOMP_attributes::
      single_column_lnd_domainfile = UNSET
      start_type = startup
      tfreeze_option = mushy
-     username = tilmes
+     username = jzhan166
      wavice_coupling = .false.
      write_restart_at_endofrun = .false.
 ::
@@ -268,14 +268,14 @@ CLOCK_attributes::
      ice_cpl_dt = 1800
      lnd_cpl_dt = 1800
      ocn_cpl_dt = 1800
-     restart_n = 6
-     restart_option = nmonths
+     restart_n = 5
+     restart_option = ndays
      restart_ymd = -999
      rof_cpl_dt = 10800
      start_tod = 0
      start_ymd = 20110101
-     stop_n = 12
-     stop_option = nmonths
+     stop_n = 5
+     stop_option = ndays
      stop_tod = 0
      stop_ymd = -999
      tprof_n = -999
@@ -318,8 +318,8 @@ WAV_attributes::
 ::
 
 MED_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = med.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = med.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -330,8 +330,8 @@ MED_modelio::
 ::
 
 ATM_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = atm.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = atm.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -342,8 +342,8 @@ ATM_modelio::
 ::
 
 LND_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = lnd.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = lnd.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -354,8 +354,8 @@ LND_modelio::
 ::
 
 ICE_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = ice.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = ice.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -366,8 +366,8 @@ ICE_modelio::
 ::
 
 OCN_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = ocn.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = ocn.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -378,8 +378,8 @@ OCN_modelio::
 ::
 
 ROF_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = rof.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = rof.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -390,8 +390,8 @@ ROF_modelio::
 ::
 
 GLC_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = glc.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = glc.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -402,8 +402,8 @@ GLC_modelio::
 ::
 
 WAV_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = wav.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = wav.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -414,8 +414,8 @@ WAV_modelio::
 ::
 
 ESP_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = esp.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = esp.log.221004-090047
      pio_async_interface = .false.
      pio_netcdf_format = 64bit_offset
      pio_numiotasks = -99
@@ -426,7 +426,7 @@ ESP_modelio::
 ::
 
 DRV_modelio::
-     diro = /glade/scratch/tilmes/f.cesm3_cam058_mom_e.FWscHIST_chemistry.ne30_np4L58.024/run
-     logfile = drv.log.6226932.chadmin1.ib0.cheyenne.ucar.edu.220905-175439
+     diro = /glade/scratch/jzhan166/NOx_tag_git/run
+     logfile = drv.log.221004-090047
 ::
 

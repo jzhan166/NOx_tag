@@ -28,7 +28,7 @@
  do_beljaars		=  .true.  
 /
 &cam_history_nl
- avgflag_pertape		= 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'I'
+ avgflag_pertape		= 'A', 'A'
  fexcl1		= ' '
  fincl1		= 'U', 'V', 'Q', 'T', 'PSL', 'OMEGA', 'PS', 'PRECC', 'PRECL', 'UTGWORO', 'VTGWORO', 'TS',
          'TAUX', 'TAUY', 'TAUBLJX', 'TAUBLJY', 'TAUGWX', 'TAUGWY', 'FLNT', 'FLNS', 'FSNS', 'FSNT', 'LHFLX', 'SHFLX',
@@ -168,11 +168,8 @@
          'so4_a1 -> /glade/p/cesmdata/cseg/inputdata/atm/cam/chem/emis/historical_ne30np4/emissions-cmip6_so4_a1_bb_surface_175001-201512_ne30np4_c20200606.nc',
          'so4_a2 -> /glade/p/cesmdata/cseg/inputdata/atm/cam/chem/emis/historical_ne30np4/emissions-cmip6_so4_a2_anthro-res_surface_mol_175001-201412_ne30np4_c20200606.nc'
  srf_emis_type		= 'INTERP_MISSING_MONTHS'
- tracer_cnst_datapath		= '/glade/p/cesmdata/cseg/inputdata/atm/cam/tracer_cnst'
  tracer_cnst_file		= ''
- tracer_cnst_filelist		= ''
  tracer_cnst_specifier		= ''
- tracer_cnst_type		= 'INTERP_MISSING_MONTHS'
  xs_coef_file		= '/glade/p/cesmdata/cseg/inputdata/atm/waccm/phot/effxstex.txt'
  xs_long_file		= '/glade/p/cesmdata/cseg/inputdata/atm/waccm/phot/temp_prs_GT200nm_JPL10_c140624.nc'
  xs_short_file		= '/glade/p/cesmdata/cseg/inputdata/atm/waccm/phot/xs_short_jpl10_c140303.nc'
@@ -183,9 +180,6 @@
          'HCFC22', 'N2O', 'CFC114', 'CFC115', 'HCFC141B', 'HCFC142B', 'H2402', 'OCS', 'SF6', 'CFC11eq'
  flbc_type		= 'SERIAL'
  scenario_ghg		= 'CHEM_LBC_FILE'
-/
-&circ_diag_nl
- do_circulation_diags		= .true.
 /
 &cldfrc2m_nl
  cldfrc2m_do_subgrid_growth		= .true.
@@ -349,6 +343,7 @@
  gw_oro_south_fac		= 2.d0   
  gw_polar_taper		= .false.
  gw_prndl		= 0.5D0
+ gw_qbo_hdepth_scaling		= 0.25D0
  n_rdg_beta		= 10
  pgwv		= 32
  pgwv_long		= 0
@@ -416,6 +411,41 @@
  nucleate_ice_use_troplev		= .true.
  use_preexisting_ice		= .true.
 /
+&nudging_nl
+ model_times_per_day		= 24
+ nudge_beg_day		= 1
+ nudge_beg_month		= 1
+ nudge_beg_year		= 2010
+ nudge_end_day		= 31
+ nudge_end_month		= 12
+ nudge_end_year		= 2020
+ nudge_force_opt		= 0
+ nudge_hwin_invert		= .false.
+ nudge_hwin_lat0		= 0.0
+ nudge_hwin_latdelta		= 1.
+ nudge_hwin_latwidth		= 9999.
+ nudge_hwin_lon0		= 180.
+ nudge_hwin_londelta		= 1.
+ nudge_hwin_lonwidth		= 9999.
+ nudge_model		= .true.
+ nudge_pscoef		= 0.00
+ nudge_psprof		= 0
+ nudge_qcoef		= 0.00
+ nudge_qprof		= 0
+ nudge_tcoef		= 0.06
+ nudge_times_per_day		= 4
+ nudge_timescale_opt		= 0
+ nudge_tprof		= 1
+ nudge_ucoef		= 0.06
+ nudge_uprof		= 1
+ nudge_vcoef		= 0.06
+ nudge_vprof		= 1
+ nudge_vwin_hdelta		= 0.001
+ nudge_vwin_hindex		= 33.
+ nudge_vwin_invert		= .false.
+ nudge_vwin_ldelta		= 0.1
+ nudge_vwin_lindex		= 0.
+/
 &phys_ctl_nl
  cam_chempkg		= 'trop_strat_mam4_vbs'
  cam_physpkg		= 'cam_dev'
@@ -427,16 +457,19 @@
  do_clubb_sgs		=  .true.  
  eddy_scheme		= 'CLUBB_SGS'
  history_aero_optics		=           .false.  
- history_aerosol		=               .false.  
- history_amwg		=                  .true.   
+ history_aerosol		= .false.
+ history_amwg		= .true.
  history_budget		=                .false.  
- history_chemistry		= .true.
- history_chemspecies_srf		=       .true.   
- history_clubb		=                 .true.   
+ history_carma		= .false.
+ history_cesm_forcing		= .false.
+ history_chemistry		= .false.
+ history_chemspecies_srf		= .false.
+ history_clubb		= .false.
  history_dust		=                  .false.  
  history_eddy		=                  .false.  
+ history_scwaccm_forcing		= .false.
  history_vdiag		=                 .false.  
- history_waccm		=                 .false.  
+ history_waccm		= .false.
  history_waccmx		=                .false.  
  macrop_scheme		= 'CLUBB_SGS'
  microp_scheme		= 'MG'
@@ -454,16 +487,12 @@
  waccmx_opt		= 'off'
 /
 &prescribed_ozone_nl
- prescribed_ozone_datapath		= '/glade/p/cesmdata/cseg/inputdata/atm/cam/ozone_strataero'
  prescribed_ozone_file		= ''
- prescribed_ozone_name		= 'O3'
- prescribed_ozone_type		= 'SERIAL'
 /
 &prescribed_strataero_nl
- prescribed_strataero_datapath		= '/glade/p/cesmdata/cseg/inputdata/atm/cam/ozone_strataero'
  prescribed_strataero_file		= ''
  prescribed_strataero_type		= 'SERIAL'
- prescribed_strataero_use_chemtrop		=    .true.                                                                       
+ prescribed_strataero_use_chemtrop		= .false.
 /
 &qneg_nl
  print_qneg_warn		= 'summary'
@@ -538,7 +567,6 @@
 &solar_data_opts
  solar_htng_spctrl_scl		= .true.
  solar_irrad_data_file		= '/glade/p/cesmdata/cseg/inputdata/atm/cam/solar/SolarForcingCMIP6_18491230-23000102_c20200615.nc'
- solar_parms_data_file		= '/glade/p/cesmdata/cseg/inputdata/atm/cam/solar/SolarForcingCMIP6_18491230-23000102_c20200615.nc'
 /
 &tms_nl
  do_tms		=  .false. 
@@ -549,11 +577,6 @@
 &vert_diff_nl
  diff_cnsrv_mass_check		=  .false. 
  do_iss		=  .true.  
-/
-&waccm_forcing_nl
- waccm_forcing_datapath		= '/glade/p/cesmdata/cseg/inputdata/atm/waccm/waccm_forcing'
- waccm_forcing_file		= 'SCWACCM_forcing_zm_L70_1849-2015_CMIP6ensAvg_c181011.nc'
- waccm_forcing_type		= 'INTERP_MISSING_MONTHS'
 /
 &wetdep_inparm
  gas_wetdep_list		= 'ALKNIT', 'ALKOOH', 'BCARY', 'BENZENE', 'BENZOOH', 'BEPOMUC', 'BIGALD', 'BIGALD1', 'BIGALD2', 'BIGALD3', 'BIGALD4',
